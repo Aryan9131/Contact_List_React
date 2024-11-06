@@ -24,11 +24,9 @@ export const UpdateContactForm = () => {
       setHouseNo(clickedContact.address?.house || '');
       setCity(clickedContact.address?.city || '');
       setZipCode(clickedContact.address?.zipcode || '');
-      console.log('clicked Contact changed:', clickedContact);
     }, [clickedContact]);
 
     const handleUpdateContact = async() => {
-      console.log("to update ->"+JSON.stringify(clickedContact))
         const updatedContact = {
            id: clickedContact.id,
            name: name,
@@ -44,7 +42,6 @@ export const UpdateContactForm = () => {
         toast.success('Contact Data is updated!!');
      }
     const handleDeleteContact=()=>{
-      console.log("delete contact called !")
       dispatch(deleteContact(clickedContact.id))
       toast.dark("Contact delete !")
     }
