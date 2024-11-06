@@ -6,9 +6,6 @@ import { addClickedContact, fetchContacts } from '../Redux/Slices/ContactSlice';
 export const Contacts = () => {
     const { contacts, status, error } = useSelector((state) => state.Contacts);
     const dispatch = useDispatch();
-    useEffect(()=>{
-        console.log("ContactList updated : "+JSON.stringify(contacts))
-     },[contacts])
     useEffect(() => {
         if (status === 'idle') {
             dispatch(fetchContacts());
