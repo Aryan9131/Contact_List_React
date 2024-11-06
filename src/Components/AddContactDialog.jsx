@@ -46,21 +46,11 @@ export default function AddContactDialog() {
      dispatch(addContact(newContact))
      .then(() => {
        // Close the dialog on successful dispatch
-       toast("Contact Added", {
-        style: {
-            backgroundColor: '#4CAF50', // Set background color (green in this example)
-            color: '#ffffff' // Set text color (white in this example)
-        }
-    })
+       toast.success('Contact Added !');
        setOpen(false);
      })
      .catch((error) => {
-      toast("Error while Adding COntact !", {
-        style: {
-            backgroundColor: 'red', // Set background color (green in this example)
-            color: '#ffffff' // Set text color (white in this example)
-        }
-    })
+        toast.error("Error while Adding Contact !")
      });
   }
   return (

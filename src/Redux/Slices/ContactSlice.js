@@ -30,16 +30,23 @@ export const addContact = createAsyncThunk(
 );
 
 export const updateContact = createAsyncThunk(
-    'contacts/updateContact',
-    async (updatedContact) => {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${updatedContact.id}`, {
-            method: 'PUT', // Use 'PATCH' if you only want to update specific fields
-            body: JSON.stringify(updatedContact),
-            headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        });
-        return response.json();
+    'contact/updateContact',
+    async(args,thunkAPI) => {
+        fetch('https://jsonplaceholder.typicode.com/users', {
+        method: 'PUT',
+        body: JSON.stringify(
+            args
+        ),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+        // return the updated contact to extraReducer
+        return args;
     }
-);
+)
+
 
 export const deleteContact = createAsyncThunk(
     'contacts/deleteContact',
@@ -79,10 +86,15 @@ const contactSlice = createSlice({
             .addCase(addContact.fulfilled, (state, action) => {
                 state.contacts.push(action.payload);
             })
-            .addCase(updateContact.fulfilled, (state, action) => {
-                state.contacts = state.contacts.map(contact =>
-                    contact.id === action.payload.id ? action.payload : contact
-                );
+            .addCase(updateContact.fulfilled,(state,action) => {
+                const data = action.payload;
+                // make new array by filtering the values
+                const newList = state.contacts.filter((contact) => contact.id !== data.id);
+                // store new array inside the contact list
+                state.contacts = newList;
+                // append the updated values inside the array
+                state.contacts.push(data);
+                state.clickedContact=undefined;
             })
             .addCase(deleteContact.fulfilled, (state, action) => {
                 state.contacts = state.contacts.filter(contact => contact.id !== action.payload);

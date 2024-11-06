@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Box, Button } from '@mui/material'
-import { updateContact } from '../Redux/Slices/ContactSlice'
+import { deleteContact, updateContact } from '../Redux/Slices/ContactSlice'
 import { TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
@@ -27,7 +27,8 @@ export const UpdateContactForm = () => {
       console.log('clicked Contact changed:', clickedContact);
     }, [clickedContact]);
 
-    const handleUpdateContact = async () => {
+    const handleUpdateContact = async() => {
+      console.log("to update ->"+JSON.stringify(clickedContact))
         const updatedContact = {
            id: clickedContact.id,
            name: name,
@@ -40,24 +41,13 @@ export const UpdateContactForm = () => {
            }
         }
         dispatch(updateContact(updatedContact))
-        .then((data) => {
-          toast("Contact Updated", {
-            style: {
-                backgroundColor: '#4CAF50', // Set background color (green in this example)
-                color: '#ffffff' // Set text color (white in this example)
-            }
-        })
-        })
-        .catch((error) => {
-          toast("Error while Updating Contact !", {
-            style: {
-                backgroundColor: 'red', // Set background color (green in this example)
-                color: '#ffffff' // Set text color (white in this example)
-            }
-        })
-        });
+        toast.success('Contact Data is updated!!');
      }
-
+    const handleDeleteContact=()=>{
+      console.log("delete contact called !")
+      dispatch(deleteContact(clickedContact.id))
+      toast.dark("Contact delete !")
+    }
   return (
     <Box sx={{
         display: "flex",
@@ -77,8 +67,8 @@ export const UpdateContactForm = () => {
         <TextField sx={{width: {xs: '100%', md: '50%', margin: '5px 0px'}}} value={city} placeholder='City' onChange={(e) => setCity(e.target.value)} />
         <TextField sx={{width: {xs: '100%', md: '50%'}}} value={zipCode} placeholder='Zip Code' onChange={(e) => setZipCode(e.target.value)} />
 
-        <Box sx={{display: "flex", justifyContent: 'space-around', marginTop: "3px", width: {xs: '100%', md: '50%'}}}>
-          <Button variant="outlined">Cancel</Button>
+        <Box sx={{display: "flex", justifyContent: 'space-between', marginTop: "3px", width: {xs: '100%', md: '50%'}}}>
+          <Button variant="outlined" onClick={handleDeleteContact} sx={{color:"red"}}>Delete</Button>
           <Button variant="outlined" onClick={handleUpdateContact}>Update</Button>
         </Box>
     </Box>
