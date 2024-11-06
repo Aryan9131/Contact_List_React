@@ -11,38 +11,17 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # Features
-Fetch Users: Fetch users from the JSONPlaceholder API and display them.
-Add a Contact: Add a new contact to the app. A POST request is made to the API, and the new contact is added to the app state.
-Update a Contact: Update an existing contact. A PUT request is made to the API to simulate an update operation.
-Delete a Contact: Delete a contact from the app. A DELETE request is made to the API to simulate deletion.
-Tech Stack
-React (Frontend)
-Redux Toolkit (State Management)
-React Router (For navigation)
-Axios (For making API calls)
-CSS/Styled Components (For styling)
+-Fetch Users: Fetch users from the JSONPlaceholder API and display them.
+-Add a Contact: Add a new contact to the app. A POST request is made to the API, and the new contact is added to the app state.
+-Update a Contact: Update an existing contact. A PUT request is made to the API to simulate an update operation.
+-Delete a Contact: Delete a contact from the app. A DELETE request is made to the API to simulate deletion.
 
-# Folder Structure
-bash
-/src
-  /components
-    - ContactList.jsx        # Component for displaying the list of contacts
-    - ContactForm.jsx        # Form component for adding/updating contacts
-    - ContactItem.jsx        # Component for each individual contact
-  /features
-    /contacts
-      - contactsSlice.js      # Redux slice for managing contacts
-  /api
-    - api.js                 # API calls and axios instance
-  App.js                      # Main component for rendering the app
-  index.js                    # Entry point for the app
-  /assets
-    - /images                 # Store static images here
-  /styles
-    - /app.css                # Global styles
-  /utils
-    - helpers.js              # Utility functions (if needed)
-  package.json                # Project dependencies and scripts
+# Tech Stack
+-React (Frontend)
+-Redux Toolkit (State Management)
+-React Router (For navigation)
+-Axios (For making API calls)
+-CSS/Styled Components (For styling)
 
 # How to Run the Project
 Clone the repository:
@@ -51,9 +30,9 @@ git clone https://github.com/your-username/contact-list-app.git
 Install dependencies:
 
 bash
-cd contact-list-app
-npm install
-Run the app:
+cd contact-list-app 
+npm install 
+Run the app: 
 
 bash
 npm start
